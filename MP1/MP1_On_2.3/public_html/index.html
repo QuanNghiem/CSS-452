@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wow, shapes!</title>
+        <link rel ="icon" type ="image/x-icon" href="./favicon.png">
+
+        <script type="x-shader/x-vertex" id="VertexShader">
+            attribute vec3 aSquareVertexPosition;  
+            uniform vec2 uOffset;
+            uniform vec2 uScale;
+            void main(void)
+            {
+                gl_Position = vec4(aSquareVertexPosition, 1.0); 
+                gl_Position.x = gl_Position[0] * uScale[0] + uOffset[0];
+                gl_Position.y = gl_Position[1] * uScale[1] + uOffset[1];
+            }
+            // End of vertex shader
+        </script>
+
+        <script type="x-shader/x-fragment" id="FragmentShader">
+            precision mediump float;
+            uniform vec4 uColor;
+            void main(void)
+            {
+                gl_FragColor = uColor;
+            }
+            // End of fragment/pixel shader
+        </script>   
+
+        <script type="text/javascript" src="src/ShaderSupport.js"></script>
+        <script type="text/javascript" src="src/VertexBuffer.js"></script>
+        <script type="text/javascript" src="src/WebGL.js"></script>
+    </head>
+
+    <body onload="doGLDraw()">
+        <canvas id="GLCanvas" width="640" height="480">
+            Your browser does not support the HTML5 canvas.
+        </canvas>
+    </body>
+</html>
